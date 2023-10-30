@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index']);
 
+Route::get('create-product', [ProductController::class, 'create']);
+
 Route::get('/eloquent', function () {
 
     // get a specific product
