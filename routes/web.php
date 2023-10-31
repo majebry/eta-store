@@ -8,6 +8,12 @@ Route::get('/products', [ProductController::class, 'index']);
 
 Route::get('create-product', [ProductController::class, 'create']);
 
+Route::post('store-product', [ProductController::class, 'store']);
+
+
+
+
+
 Route::get('/eloquent', function () {
 
     // get a specific product

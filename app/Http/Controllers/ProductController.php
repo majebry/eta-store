@@ -9,17 +9,24 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return 'Hello index';
+        return view('products/index')->with('myProducts', Product::latest('id')->get());
     }
 
     public function create()
     {
+        return view('products/create');
+    }
+
+    public function store(Request $request)
+    {
         $p = new Product;
 
-        $p->name = 'Hat';
-        $p->price = 18;
-        $p->description = 'Nice small hat for children';
+        $p->name = request('name');
+        $p->price = request('price');
+        $p->description = request('description');
 
         $p->save();
+
+        return redirect('products');
     }
 }
