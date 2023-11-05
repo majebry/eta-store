@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\ProductController;
-use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index']);
@@ -10,7 +9,11 @@ Route::get('create-product', [ProductController::class, 'create']);
 
 Route::post('store-product', [ProductController::class, 'store']);
 
+Route::get('example/{param1}/{param2}', function ($key, $name) {
+    // return $key;
 
+    return $name;
+});
 
 
 
