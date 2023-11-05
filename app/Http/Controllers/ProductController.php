@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('products/index')->with('myProducts', Product::latest('id')->get());
+        return view('products/index')->with('myProducts', Product::latest('id')->where('name', 'aaaa')->get());
     }
 
     public function create()
@@ -28,5 +28,12 @@ class ProductController extends Controller
         $p->save();
 
         return redirect('products');
+    }
+
+    public function show($id)
+    {
+        $product = Product::find($id);
+
+        return view('products/show')->with('item', $product);
     }
 }

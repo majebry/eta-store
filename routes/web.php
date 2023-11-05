@@ -9,11 +9,7 @@ Route::get('create-product', [ProductController::class, 'create']);
 
 Route::post('store-product', [ProductController::class, 'store']);
 
-Route::get('example/{param1}/{param2}', function ($key, $name) {
-    // return $key;
-
-    return $name;
-});
+Route::get('show-product/{key}', [ProductController::class, 'show']);
 
 
 

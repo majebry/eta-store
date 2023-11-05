@@ -6,17 +6,7 @@ Products List
 
 @section('content')
 
-
-        @if (! $myProducts->count())
-          <div class="alert alert-warning">
-            <p>No Products</p>
-          </div>
-        @endif
-
- <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-
-
-        @foreach ($myProducts as $item)
+@if ($item)
 
         <div class="col">
           <div class="card shadow-sm">
@@ -26,7 +16,6 @@ Products List
               <p class="card-text">{{ $item->description }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <a href="{{ url('show-product/' . $item->id) }}" class="btn btn-sm btn-outline-secondary">View</a>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
                 <small class="text-body-secondary">{{ $item->price }} LYD</small>
@@ -35,9 +24,10 @@ Products List
           </div>
         </div>
 
-        @endforeach
-        
-        
-      </div>
+@else
+
+<div class="alert alert-warning"> This product does not exists </div>
+
+@endif
 
 @endsection
