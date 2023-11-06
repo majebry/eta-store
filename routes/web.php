@@ -41,3 +41,8 @@ Route::get('/eloquent', function () {
     // return Product::where('price', '>', 20)->get();
 
 });
+
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
