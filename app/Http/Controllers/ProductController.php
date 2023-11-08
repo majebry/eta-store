@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('products/index')->with('myProducts', Product::latest('id')->where('name', 'aaaa')->get());
+        return view('products/index')->with('myProducts', Product::latest()->get());
     }
 
     public function create()
@@ -19,11 +19,20 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+        // php artisan storage:link
+
+
         $p = new Product;
 
         $p->name = request('name');
         $p->price = request('price');
         $p->description = request('description');
+
+        if (request('image')) {
+            $imagePath = request('image')->store('product_images');
+
+            $p->image = $imagePath;
+        }
 
         $p->save();
 

@@ -1,12 +1,12 @@
-@extends('layout')
+@extends('layouts.app')
 
 @section('title')
-Products List
+Create Product
 @endsection
 
 @section('content')
 
-<form method="POST" action="/store-product">
+<form method="POST" action="/store-product" enctype="multipart/form-data">
 @csrf
 
   <div class="mb-3">
@@ -17,6 +17,11 @@ Products List
     <div class="mb-3">
     <label class="form-label">Price</label>
     <input type="number" class="form-control" name="price">
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Image</label>
+    <input type="file" class="form-control" name="image">
   </div>
 
       <div class="mb-3">

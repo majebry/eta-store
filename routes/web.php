@@ -5,11 +5,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/products', [ProductController::class, 'index']);
 
-Route::get('create-product', [ProductController::class, 'create']);
+Route::get('create-product', [ProductController::class, 'create'])->middleware('auth');
 
-Route::post('store-product', [ProductController::class, 'store']);
+Route::post('store-product', [ProductController::class, 'store'])->middleware('auth');
 
 Route::get('show-product/{key}', [ProductController::class, 'show']);
+
+Route::get('/', [ProductController::class, 'index']);
 
 
 
@@ -43,6 +45,6 @@ Route::get('/eloquent', function () {
 });
 
 
-Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
