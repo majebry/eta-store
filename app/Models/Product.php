@@ -12,5 +12,8 @@ class Product extends Model
     // specifying a custom table name
     // protected $table = 'tbl_product';
 
-    public $timestamps = false;
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }

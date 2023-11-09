@@ -24,6 +24,16 @@ Create Product
     <input type="file" class="form-control" name="image">
   </div>
 
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <select class="form-control" name="category_id">
+    <option disabled selected>-- Select Category --</option>
+      @foreach ($categories as $category)
+        <option value="{{ $category->id }}">{{ $category->name }}</option>
+      @endforeach
+    </select>
+  </div>
+
       <div class="mb-3">
     <label class="form-label">Description</label>
 

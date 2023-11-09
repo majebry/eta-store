@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -10,23 +11,27 @@ class ProductController extends Controller
     public function index()
     {
         return view('products/index')->with('myProducts', Product::latest()->get());
+
+        // Category::find(3)->products()->orderBy('price', 'DESC')->get()
     }
 
     public function create()
     {
-        return view('products/create');
+        $categories = Category::all();
+        
+        return view('products/create')->with('categories', $categories);
     }
 
     public function store(Request $request)
     {
         // php artisan storage:link
 
-
         $p = new Product;
 
         $p->name = request('name');
         $p->price = request('price');
         $p->description = request('description');
+        $p->category_id = request('category_id');
 
         if (request('image')) {
             $imagePath = request('image')->store('product_images');
@@ -44,5 +49,12 @@ class ProductController extends Controller
         $product = Product::find($id);
 
         return view('products/show')->with('item', $product);
+    }
+
+    public function destroy($id)
+    {
+        Product::find($id)->delete();
+
+        return redirect('products');
     }
 }

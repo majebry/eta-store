@@ -13,6 +13,8 @@ Route::get('show-product/{key}', [ProductController::class, 'show']);
 
 Route::get('/', [ProductController::class, 'index']);
 
+Route::delete('/products/{key}', [ProductController::class, 'destroy']);
+
 
 
 Route::get('/eloquent', function () {

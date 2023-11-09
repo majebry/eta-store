@@ -28,11 +28,22 @@ Products List
 
             <div class="card-body">
               <h5 class="card-title">{{ $item->name }}</h5>
+              <p class="card-text">{{ $item->category ? $item->category->name : 'Not Categorized' }}</p>
               <p class="card-text">{{ $item->description }}</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
                   <a href="{{ url('show-product/' . $item->id) }}" class="btn btn-sm btn-outline-secondary">View</a>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+
+                  @auth
+
+                  <form action="{{ url('products/' . $item->id ) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <input type="submit" class="btn btn-sm btn-danger" value="Delete">
+                  </form>
+
+                  @endauth
                 </div>
                 <small class="text-body-secondary">{{ $item->price }} LYD</small>
               </div>
