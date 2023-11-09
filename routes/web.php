@@ -15,6 +15,10 @@ Route::get('/', [ProductController::class, 'index']);
 
 Route::delete('/products/{key}', [ProductController::class, 'destroy']);
 
+Route::get('edit-product/{key}', [ProductController::class, 'edit']);
+
+Route::patch('/products/{key}', [ProductController::class, 'update']);
+
 
 
 Route::get('/eloquent', function () {
