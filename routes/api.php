@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\OrderController;
 use App\Http\Controllers\API\ProductController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,9 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// POST `api/login`
+// (body: user, pass)
+
+Route::post('/login', [LoginController::class, 'login']);
+
+// POST `api/place-order` (headers: token)
+
+Route::post('place-order', [OrderController::class, 'store'])->middleware('auth:sanctum');
+
+
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
 
 Route::get('/products', [ProductController::class, 'index']);

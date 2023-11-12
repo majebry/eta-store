@@ -16,10 +16,16 @@ class DatabaseSeeder extends Seeder
 
         \App\Models\User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test1@example.com',
+            'email' => 'test5@example.com',
             'password' => bcrypt('123'),
         ]);
 
+        $customer = new \App\Models\Customer;
+
+        $customer->phone = '0920119922';
+        $customer->password = bcrypt('123');
+        $customer->save();
+       
         // php artisan db:seed
     }
 }
