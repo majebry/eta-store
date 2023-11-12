@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -25,9 +26,9 @@ class ProductController extends Controller
     public function store(Request $request)
     {
         // php artisan storage:link
-
+        
         $p = new Product;
-
+        
         $p->name = request('name');
         $p->price = request('price');
         $p->description = request('description');
@@ -84,7 +85,11 @@ class ProductController extends Controller
 
     public function destroy($id)
     {
-        Product::find($id)->delete();
+        $product = Product::find($id);
+
+        Storage::delete($product->image);
+
+        $product->delete();
 
         return redirect('products');
     }
